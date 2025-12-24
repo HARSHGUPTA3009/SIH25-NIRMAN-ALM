@@ -1,0 +1,21 @@
+services:
+  frontend:
+    build:
+      context: ./LTUAS-frontend
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./ALM
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
